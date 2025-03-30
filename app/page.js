@@ -62,7 +62,7 @@ export default function Home() {
         }
 
         // If email sending is successful, proceed to insert into Notion
-        const notionResponse = await fetch("/api/notion", {
+        const notionResponse = await fetch("/api/mail", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
