@@ -1,6 +1,6 @@
 import TechNewsletterTemplate from '@/lib/mail/news';
 import { render } from '@react-email/render';
-import { fetchNewsFromPerplexity } from '@/lib/perplexity';
+import { fetchNewsFromPerplexity, getMockNewsData } from '@/lib/perplexity';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -25,6 +25,7 @@ export async function GET(request) {
     const newsData = useMockData ? getMockNewsData() : await fetchNewsFromPerplexity();
     const {data: {data}} =  await resend.broadcasts.list();
     const editionNumber = (data.length || 0) + 1;
+    const {news} = newsData
 
     // Renderizar o template React Email com os dados
     const emailHtml = await render(
@@ -32,7 +33,7 @@ export async function GET(request) {
         title={newsData.title}
         editionNumber={editionNumber}
         date={new Date()}
-        categories={newsData.categories}
+        news={news}
         emailAddress="preview@example.com"
       />
     );
@@ -48,7 +49,12 @@ export async function GET(request) {
       scheduledAt: 'in 1 min',
     });
 
-    // Retornar HTML diretamente
+    // // Retornar HTML diretamente
+    // return new Response(emailHtml, {
+    //   headers: { 'Content-Type': 'text/html' },
+    //   status: 200
+    // });
+
     return Response.json(
       { success: true },
       { status: 200 }
