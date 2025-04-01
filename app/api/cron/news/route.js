@@ -1,5 +1,3 @@
-
-import axios from 'axios';
 import TechNewsletterTemplate from '@/lib/mail/news';
 import { render } from '@react-email/render';
 import { fetchNewsFromPerplexity } from '@/lib/perplexity';
@@ -13,7 +11,7 @@ export async function GET(request) {
     // Verificar autenticação
     const { searchParams } = new URL(request.url);
     const apiKey = searchParams.get('apiKey');
-    const editionNumber = searchParams.get('edition') || 1;
+    
     const useMockData = searchParams.get('mock') === 'true';
 
     if (apiKey !== process.env.NEWSLETTER_API_KEY) {
@@ -25,6 +23,8 @@ export async function GET(request) {
 
     // Obter dados (mock ou real)
     const newsData = useMockData ? getMockNewsData() : await fetchNewsFromPerplexity();
+    const {data: {data}} =  await resend.broadcasts.list();
+    const editionNumber = (data.length || 0) + 1;
 
     // Renderizar o template React Email com os dados
     const emailHtml = await render(
