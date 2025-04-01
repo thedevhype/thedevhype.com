@@ -111,9 +111,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col overflow-x-clip bg-black">
       {/* Left Section: Form */}
-      <div className="md:flex-row hidden md:flex justify-center items-center w-full bg-black ">
-        <div className="flex flex-col justify-center items-center w-1/2 bg-white min-h-screen">
-          <div className="px-24">
+      <div className="md:flex-row md:flex justify-center items-center w-full bg-black ">
+        <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-white min-h-screen">
+          <div className="p-8 md:px-24">
             <BlurText
               text="O Essencial sobre tecnologia e inteligência artificial para quem só tem 5 minutos."
               delay={150}
@@ -133,7 +133,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col justify-between w-1/2 bg-black">
-          <div className="min-h-screen h-screen w-full relative">
+          <div className="min-h-screen h-screen w-full relative hidden">
             <Particles
               particleColors={['#ffffff', '#ffffff']}
               particleCount={200}

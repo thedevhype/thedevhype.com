@@ -23,7 +23,7 @@ export default function Form({
 
   return (
     <motion.div
-      className="mt-6 flex w-full max-w-[34rem] flex-col gap-2"
+      className="mt-6 flex w-full max-w-[34rem] flex-col gap-2 px-8 md:px-0"
       variants={containerVariants}
       initial="hidden"
       animate="visible">
