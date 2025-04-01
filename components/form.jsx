@@ -51,7 +51,7 @@ export default function Form({
           iconPlacement="right"
           className="mt-2 w-full cursor-pointer"
           disabled={loading}>
-          {loading ? "Loading..." : "Entre na lista de espera"}
+          {loading ? "Loading..." : "Inscreva-se agora"}
         </EnhancedButton>
       </motion.div>
       <motion.div
