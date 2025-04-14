@@ -133,7 +133,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col justify-between w-1/2 bg-black">
-          <div className="min-h-screen h-screen w-full relative hidden">
+          <div className="min-h-screen h-screen w-full relative hidden md:block">
             <Particles
               particleColors={['#ffffff', '#ffffff']}
               particleCount={200}
