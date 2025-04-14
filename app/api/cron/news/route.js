@@ -40,20 +40,20 @@ export async function GET(request) {
 
     const { id } = await resend.broadcasts.create({
       audienceId: process.env.RESEND_TARGET_BROADCAST,
-      from: 'News <noreply@thedevhype.com>',
+      from: 'The Dev Hype <newsletter@mail.thedevhype.com>',
       subject: newsData.title,
       html: emailHtml,
     });
     
-    await resend.broadcasts.send(id, {
-      scheduledAt: 'in 1 min',
-    });
-
-    // // Retornar HTML diretamente
-    // return new Response(emailHtml, {
-    //   headers: { 'Content-Type': 'text/html' },
-    //   status: 200
+    // await resend.broadcasts.send(id, {
+    //   scheduledAt: 'in 1 min',
     // });
+
+    // Retornar HTML diretamente
+    return new Response(emailHtml, {
+      headers: { 'Content-Type': 'text/html' },
+      status: 200
+    });
 
     return Response.json(
       { success: true },

@@ -1,4 +1,4 @@
-
+import Welcome from "@/lib/mail/welcome";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
@@ -16,6 +16,15 @@ export async function POST(request, response) {
     unsubscribed: false,
     audienceId: process.env.RESEND_TARGET_BROADCAST,
   });
+
+
+  await resend.emails.send({
+    from: "The Dev Hype <newsletter@mail.thedevhype.com>",
+    to: email,
+    subject: "Seja bem-vindo ao </hype>",
+    react: Welcome(data.id),
+  });
+
 
   return NextResponse.json(
     {
